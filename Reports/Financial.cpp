@@ -23,13 +23,23 @@ Financial::~Financial() {
 }
 
 void Financial::thisMonth() {
-
+  std::string file = "/Users/travisstaley/Desktop/report.txt";
+  FILE *pF = fopen(strdup(file.c_str()),"w");
   std::vector<Reports::FinancialRecord>::iterator itr;
+  float sum=0;
   for(itr = this->records.begin(); itr != this->records.end(); itr++){
-    std::cout << itr->Notes
-	      << "\n"
-	      << std::endl;
+    if( itr->Debit > 43.0f && !(itr->Category == "transfer")){
+      std::cout << itr->Description
+      		<< "Debit = "
+      		<< itr->Debit
+      		<< std::endl;
+      fprintf(pF,"%s\n",itr->Description.c_str());
+      fprintf(pF,"Debit = %5.2f\n",itr->Debit);
+      sum+=itr->Debit;
+    }
   }
+  fprintf(pF,"Total Spent = %5.2f\n",sum);
+  fclose(pF);
 }
 
 void Financial::parseFile()
