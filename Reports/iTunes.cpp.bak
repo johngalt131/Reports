@@ -1,0 +1,43 @@
+/*
+ * iTunes.cpp
+ *
+ *  Created on: Sep 11, 2011
+ *      Author: travisstaley
+ */
+
+#include "Financial.h"
+#include <fstream>
+#include <stdlib.h>
+#include <stdio.h>
+#include <iostream>
+#include "tinyxml.h"
+
+Financial::Financial() {
+  // TODO Auto-generated constructor stub
+}
+
+Financial::~Financial() {
+  // TODO Auto-generated destructor stub
+}
+
+void Financial::parseFile()
+{
+  FILE *databasefile = fopen(this->getInputFile().c_str(),"r");
+  if( databasefile == NULL){
+    std::cout << "Couldn't open the file." << std::endl;
+    exit(0);
+  }
+  fclose(databasefile);
+  const std::string & temp = (this->getInputFile());
+  const char * tmp1 = this->getInputFile().c_str();
+  TiXmlDocument Doc(tmp1);
+  //Doc->LoadFile(databasefile);
+  if ( Doc.LoadFile() ){
+    TiXmlPrinter printer;
+    Doc.Accept( &printer );
+    fprintf( stdout, "%s", printer.CStr());
+    const TiXmlElement *root = Doc.RootElement();
+    std::cout << root->FirstChildElement("dict") << std::endl;
+    //std::cout << root->FirstChild("todo")->Value()<< std::endl;
+  }
+}

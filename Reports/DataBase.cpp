@@ -16,7 +16,7 @@ DataBase::~DataBase() {
 	// TODO Auto-generated destructor stub
 }
 
-void DataBase::setInputFile(std::string filename)
+void DataBase::setInputFile(const std::string & filename)
 {
 	this->inputFile = filename;
 }

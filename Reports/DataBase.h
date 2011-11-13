@@ -14,17 +14,18 @@
 #include "string"
 
 class DataBase {
-public:
-	DataBase();
-	virtual ~DataBase();
-	virtual void parseFile() = 0;
-	void setInputFile(std::string filename);
-	std::string getInputFile(void);
-private:
-	std::string inputFile;
+ public:
+  DataBase();
+  virtual ~DataBase();
+  virtual void parseFile() = 0;
+  void setInputFile(const std::string & filename);
+  std::string getInputFile(void);
+  
+  // Some reports
+  virtual void thisMonth() = 0;
+
+ private:
+  std::string inputFile;
 };
 
-class iTunesLibrary : public DataBase {
-
-};
 #endif /* DATABASE_H_ */
