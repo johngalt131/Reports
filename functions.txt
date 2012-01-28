@@ -1,0 +1,38 @@
+
+void set_date(date date);
+void set_cleared_val(int cleared_val);
+void set_description(std::string description);
+void set_debit_val(float debit_val);
+void set_num(int num);
+void set_category(std::string category);
+void set_budget_category(std::string budget_category);
+void set_notes(std::string notes);
+void set_account(std::string account);
+void set_discretionary(bool discretionary);
+void set_credit_val(float credit_val);
+void set_order(short order);
+void set_repay(bool repay);
+void set_pending_total(float pending_total);
+void set_reconciled_val(float reconciled_val);
+void set_cleared_balance(float cleared_balance);
+void set_reconciled_balance(float reconciled_balance);
+void set_total_discretionary(float total_discretionary);
+
+date set_date(void);
+int set_cleared_val(void);
+std::string set_description(void);
+float set_debit_val(void);
+int set_num(void);
+std::string set_category(void);
+std::string set_budget_category(void);
+std::string set_notes(void);
+std::string set_account(void);
+bool set_discretionary(void);
+float set_credit_val(void);
+short set_order(void);
+bool set_repay(void);
+float set_pending_total(void);
+float set_reconciled_val(void);
+float set_cleared_balance(void);
+float set_reconciled_balance(void);
+float set_total_discretionary(void);

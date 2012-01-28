@@ -1,22 +1,22 @@
-#!/bin/bash
 
-MAKE=0
-if [ $1 == "all" ];then
-    MAKE=1
-fi
+exec prep.sh
 
-if [ $MAKE -gt 0];then
-    pushd tinyxml
-    make clean
-    make
-    ar cr libtinyxml.a *.o
-    mv libtinyxml.a ./lib/
-    popd
-fi
-pushd Reports
-g++ -g -c *.cpp -I. -I../tinyxml/ 2>&1
-rm Report.o
-rm ItunesLibrary.o
-g++ -g -o Report *.o Report.cpp -I../tinyxml/ -L../tinyxml/lib/ -ltinyxml 2>&1
-#g++ -g -c Report.cpp -I. -I../tinyxml/ 2>&1
-popd
+LIBPATH="\
+-L./Users/travisstaley/Documents/source-code/C++/packages/tinyxml/ \
+"
+HPATH="\
+-I./Users/travisstaley/Documents/source-code/C++/packages/tinyxml/ \
+"
+LIBS="\
+-ltinyxml \
+"
+SRC="\
+FinancialRecordList.cpp
+FinancialRecord.cpp
+"
+MAIN="financial"
+for a in $SRC;do
+    g++ -DTIXML_USE_STL -g -c -o ./objs/"$a".o "$a" $HPATH # $LIBPATH $LIBS 
+done
+#g++ -g -o music music.cpp $HPATH $LIBPATH $LIBS 
+g++ -DTIXML_USE_STL -g -o  $MAIN "$MAIN".cpp objs/*.o $HPATH $LIBPATH $LIBS 
