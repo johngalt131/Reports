@@ -1,10 +1,19 @@
 #!/bin/bash
 
+## Constants
+# name of the file with all the fields
 FIELD_FILE="fields.list"
-NAMESPACE_OR_CLASS="Financial"
+# this is for the implementation methods
+NAMESPACE="Financial"
+CLASS="FinancialRecord"
+# this replaces the tabs with spaces
 TAB="  "
+# output file for the property name structures
 FILE_NAME="financial_structs.h"
-GETTER_SETTER_METHODS_FILE="functions.txt"
+# output file for the functions
+GETTER_SETTER_METHODS_FILE="functions.cpp"
+SETTER_ARGUMENT_PREFIX="new_"
+
 # Empty the file
 H_FILE_INFO="
 // This file was created by prep.sh
@@ -41,18 +50,23 @@ cat $FIELD_FILE | while read a;do
     echo "$name,">> $FILE_NAME
 done
 echo "Unknown Type," | sed -n 's/\(.*\)/\U&/pg' | sed 's/\ /\_/g'>> $FILE_NAME
-echo "number of propers" | sed -n 's/\(.*\)/\U&/pg' | sed 's/\ /\_/g'| sed 's/$/\n\}\;/' >> $FILE_NAME
+echo "number of props" | sed -n 's/\(.*\)/\U&/pg' | sed 's/\ /\_/g'| sed 's/$/\n\}\;/' >> $FILE_NAME
 echo $NEWLINES >> $FILE_NAME
 echo "#endif" >> $FILE_NAME
 
 # Generate new getter and setter function names
-# Setter Methods
+# Setter Methods: prototypes
 echo "" > $GETTER_SETTER_METHODS_FILE
+echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
+echo "// These are automatically generated getter and setter methods" >> $GETTER_SETTER_METHODS_FILE
+echo "// Do Not Edit" >> $GETTER_SETTER_METHODS_FILE
+echo "public:" >> $GETTER_SETTER_METHODS_FILE
 cat $FIELD_FILE | while read a;do
     type=`echo "$a" |  awk -F \; '{print $2}'`
     name=`echo "$a" |  awk -F \; '{print $1}' | sed -n 's/\(.*\)/\L&/pg'`
+    newname="$SETTER_ARGUMENT_PREFIX$name"
     function_name=`echo "$name" | sed 's/^/set\_/'`
-    MESSAGE="void $function_name($type $name);"
+    MESSAGE="void $function_name(std::string $newname);"
     echo "$MESSAGE" >> $GETTER_SETTER_METHODS_FILE
 done
 echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
@@ -66,7 +80,10 @@ cat $FIELD_FILE | while read a;do
 done
 echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
 # Members
-cat $FIELD_FILE | while read a;do
+echo "// These are automatically generated member variables" >> $GETTER_SETTER_METHODS_FILE
+echo "// Do Not Edit" >> $GETTER_SETTER_METHODS_FILE
+echo "private:" >> $GETTER_SETTER_METHODS_FILE
+cat $FIELD_FILE | while read a;do 
     type=`echo "$a" |  awk -F \; '{print $2}'`
     name=`echo "$a" |  awk -F \; '{print $1}' | sed -n 's/\(.*\)/\L&/pg'`
     member_name=`echo "$name" | sed 's/^/\_/'`
@@ -74,45 +91,115 @@ cat $FIELD_FILE | while read a;do
     echo "$MESSAGE" >> $GETTER_SETTER_METHODS_FILE
 done
 
+echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
+echo "// This is an automatically generated initialization block for constructor" >> $GETTER_SETTER_METHODS_FILE
+echo "// Do Not Edit" >> $GETTER_SETTER_METHODS_FILE
+cat $FIELD_FILE | while read a;do
+    value=`echo "$a" |  awk -F \; '{print $3}'`
+    type=`echo "$a" |  awk -F \; '{print $2}'`
+    name=`echo "$a" |  awk -F \; '{print $1}' | sed -n 's/\(.*\)/\L&/pg'`
+    newname="$SETTER_ARGUMENT_PREFIX$name"
+    function_name=`echo "$name" | sed 's/^/set\_/'`
+    MESSAGE="$function_name(\"$value\");"
+    echo "$MESSAGE" >> $GETTER_SETTER_METHODS_FILE
+done
+echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
 
 # Generate the tinyxml code
+# This is partially dependent on the format of the xml file
+# this is for the HandBase export format
 echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
+echo "// This is automatically generated code" >> $GETTER_SETTER_METHODS_FILE
+echo "// Do Not Edit" >> $GETTER_SETTER_METHODS_FILE
 cat $FIELD_FILE | while read a;do
     name=`echo "$a" | awk -F \; '{print $1}'| sed -n 's/\(.*\)/\U&/pg' | sed 's/\ /\_/g'`
-    setter_function=`echo "$name" | sed 's/^/set\_/'`
-    echo "case $name:" >> $GETTER_SETTER_METHODS_FILE
-    echo "$setter_function(child->GetText());" >> $GETTER_SETTER_METHODS_FILE
+    setter_function=`echo "$name" | sed 's/^/set\_/' | sed 's/\(.*\)/\L&/g'`
+    temp_string="temp_string"
+    echo "case $name:{" >> $GETTER_SETTER_METHODS_FILE
+    echo "const char *temp = child->GetText();" >> $GETTER_SETTER_METHODS_FILE
+    echo "std::string $temp_string;" >> $GETTER_SETTER_METHODS_FILE
+    echo "if( temp ){ " >> $GETTER_SETTER_METHODS_FILE
+    echo "temp_string = temp;" >> $GETTER_SETTER_METHODS_FILE
+    echo "free(temp);" >> $GETTER_SETTER_METHODS_FILE
+    echo "NAMEOFCLASS$setter_function($temp_string);" >> $GETTER_SETTER_METHODS_FILE
+    echo "}" >> $GETTER_SETTER_METHODS_FILE
     echo "break;" >> $GETTER_SETTER_METHODS_FILE
+    echo "}" >> $GETTER_SETTER_METHODS_FILE
 done
+echo "// case statements" >> $GETTER_SETTER_METHODS_FILE
 echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
 
 
 ## Implementation of getters and setters
 # setters
 echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
+echo "// This is an automatically generated code" >> $GETTER_SETTER_METHODS_FILE
+echo "// Do Not Edit" >> $GETTER_SETTER_METHODS_FILE
 cat $FIELD_FILE | while read a;do
     type=`echo "$a" |  awk -F \; '{print $2}'`
     name=`echo "$a" |  awk -F \; '{print $1}' | sed -n 's/\(.*\)/\L&/pg'`
+    newname="$SETTER_ARGUMENT_PREFIX$name"
     function_name=`echo "$name" | sed 's/^/set\_/'`
-    echo "void $NAMESPACE_OR_CLASS::$function_name($type $name){" >> $GETTER_SETTER_METHODS_FILE
-    echo "_$name = $name;" >> $GETTER_SETTER_METHODS_FILE
+    echo "void $CLASS::$function_name(std::string $newname){" >> $GETTER_SETTER_METHODS_FILE
+    if [ $type == "int" ];then
+	aux_name="string_to_int"
+	MESSAGE="std::stringstream $aux_name;
+$aux_name << $newname;
+$aux_name >> _$name;"
+    elif [ $type == "float" ];then
+	aux_name="string_to_float"
+	MESSAGE="std::stringstream $aux_name;
+$aux_name << $newname;
+$aux_name >> _$name;"
+    elif [ $type == "short" ];then
+	aux_name="string_to_short"
+	MESSAGE="std::stringstream $aux_name;
+$aux_name << $newname;
+$aux_name >> _$name;"
+    elif [ $type == "bool" ];then
+	aux_name="temp_bool"
+	MESSAGE="bool $aux_name;
+std::transform($newname.begin(),$newname.end(),$newname.begin(), ::tolower);
+if( $newname == \"0\" || $newname == \"false\" ){
+$aux_name = false;
+}
+else{
+$aux_name = true;
+}
+_$name = $aux_name;"	
+    elif [ $type == "Financial::date" ];then
+	aux_name=""
+	MESSAGE_FILE="template.date.cpp"
+	cat $MESSAGE_FILE | sed "s/INSERT_NAME/$newname/" | sed "s/NAMESPACE/$NAMESPACE/" >> $GETTER_SETTER_METHODS_FILE
+	echo "_$name = $newname;" >> $GETTER_SETTER_METHODS_FILE
+    elif [ $type == "std::string" ];then
+	aux_name="$newname"
+	MESSAGE="_$name = $aux_name;"
+    else
+	echo "WHAT THE FUCK. Specify the right type" >> $GETTER_SETTER_METHODS_FILE
+    fi
+    echo "$MESSAGE" >> $GETTER_SETTER_METHODS_FILE
     echo "}" >> $GETTER_SETTER_METHODS_FILE
 done
 
 # getters
 echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
+echo "// This is an automatically generated code" >> $GETTER_SETTER_METHODS_FILE
+echo "// Do Not Edit" >> $GETTER_SETTER_METHODS_FILE
 cat $FIELD_FILE | while read a;do
     type=`echo "$a" |  awk -F \; '{print $2}'`
     name=`echo "$a" |  awk -F \; '{print $1}' | sed -n 's/\(.*\)/\L&/pg'`
     function_name=`echo "$name" | sed 's/^/get\_/'`
-    echo "$type $NAMESPACE_OR_CLASS::$function_name(){" >> $GETTER_SETTER_METHODS_FILE
+    echo "$type $CLASS::$function_name(){" >> $GETTER_SETTER_METHODS_FILE
     echo "return _$name;" >> $GETTER_SETTER_METHODS_FILE
     echo "}" >> $GETTER_SETTER_METHODS_FILE
 done
 
 
-
-
 # INDENT STRUCT FILE
 indent $FILE_NAME
 sed "s/\t/$TAB/" <$FILE_NAME > tmp && mv tmp $FILE_NAME
+
+
+## now put all in the right places.
+

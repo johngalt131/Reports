@@ -119,61 +119,117 @@ break;
 
 
 void Financial::set_date(date date){
-_date = date;
+WHAT THE FUCK. Specify the right type
+
+_date = ;
 }
 void Financial::set_cleared_val(int cleared_val){
-_cleared_val = cleared_val;
+
+std::stringstream string_to_int;
+string_to_int << cleared_val;
+_cleared_val = string_to_int;
 }
 void Financial::set_description(std::string description){
+
+std::stringstream string_to_int;
+string_to_int << cleared_val;
 _description = description;
 }
 void Financial::set_debit_val(float debit_val){
-_debit_val = debit_val;
+
+std::stringstream string_to_float;
+string_to_float << debit_val;
+_debit_val = string_to_float;
 }
 void Financial::set_num(int num){
-_num = num;
+
+std::stringstream string_to_int;
+string_to_int << num;
+_num = string_to_int;
 }
 void Financial::set_category(std::string category){
+
+std::stringstream string_to_int;
+string_to_int << num;
 _category = category;
 }
 void Financial::set_budget_category(std::string budget_category){
+
+std::stringstream string_to_int;
+string_to_int << num;
 _budget_category = budget_category;
 }
 void Financial::set_notes(std::string notes){
+
+std::stringstream string_to_int;
+string_to_int << num;
 _notes = notes;
 }
 void Financial::set_account(std::string account){
+
+std::stringstream string_to_int;
+string_to_int << num;
 _account = account;
 }
 void Financial::set_discretionary(bool discretionary){
-_discretionary = discretionary;
+
+std::stringstream string_to_int;
+string_to_int << num;
+_discretionary = account;
 }
 void Financial::set_credit_val(float credit_val){
-_credit_val = credit_val;
+
+std::stringstream string_to_float;
+string_to_float << credit_val;
+_credit_val = string_to_float;
 }
 void Financial::set_order(short order){
-_order = order;
+
+std::stringstream string_to_short;
+string_to_short << order;
+_order = string_to_short;
 }
 void Financial::set_repay(bool repay){
-_repay = repay;
+
+std::stringstream string_to_short;
+string_to_short << order;
+_repay = string_to_short;
 }
 void Financial::set_pending_total(float pending_total){
-_pending_total = pending_total;
+
+std::stringstream string_to_float;
+string_to_float << pending_total;
+_pending_total = string_to_float;
 }
 void Financial::set_reconciled_val(float reconciled_val){
-_reconciled_val = reconciled_val;
+
+std::stringstream string_to_float;
+string_to_float << reconciled_val;
+_reconciled_val = string_to_float;
 }
 void Financial::set_cleared_balance(float cleared_balance){
-_cleared_balance = cleared_balance;
+
+std::stringstream string_to_float;
+string_to_float << cleared_balance;
+_cleared_balance = string_to_float;
 }
 void Financial::set_reconciled_balance(float reconciled_balance){
-_reconciled_balance = reconciled_balance;
+
+std::stringstream string_to_float;
+string_to_float << reconciled_balance;
+_reconciled_balance = string_to_float;
 }
 void Financial::set_total_discretionary(float total_discretionary){
-_total_discretionary = total_discretionary;
+
+std::stringstream string_to_float;
+string_to_float << total_discretionary;
+_total_discretionary = string_to_float;
 }
 void Financial::set_discretionary_amt(float discretionary_amt){
-_discretionary_amt = discretionary_amt;
+
+std::stringstream string_to_float;
+string_to_float << discretionary_amt;
+_discretionary_amt = string_to_float;
 }
 
 date Financial::get_date(){

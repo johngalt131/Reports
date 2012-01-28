@@ -1,19 +1,19 @@
-Date;date
-Cleared_val;int
-Description;std::string
-Debit_val;float
-Num;int
-Category;std::string
-Budget_Category;std::string
-Notes;std::string
-Account;std::string
-Discretionary;bool
-Credit_val;float
-Order;short
-Repay;bool
-Pending_Total;float
-Reconciled_Val;float
-Cleared_Balance;float
-Reconciled_Balance;float
-Total_Discretionary;float
-Discretionary_Amt;float
+Date;Financial::date;01/12/1900
+Cleared_val;int;-34044
+Description;std::string;This attribute is missing
+Debit_val;float;-34044
+Num;int;-34044
+Category;std::string;This attribute is missing
+Budget_Category;std::string;This attribute is missing
+Notes;std::string;This attribute is missing
+Account;std::string;This attribute is missing
+Discretionary;bool;false
+Credit_val;float;-34044
+Order;short;-34044
+Repay;bool;false
+Pending_Total;float;-34044
+Reconciled_Val;float;-34044
+Cleared_Balance;float;-34044
+Reconciled_Balance;float;-34044
+Total_Discretionary;float;-34044
+Discretionary_Amt;float;-34044

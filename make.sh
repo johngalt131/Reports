@@ -1,11 +1,9 @@
 
-exec prep.sh
-
 LIBPATH="\
--L./Users/travisstaley/Documents/source-code/C++/packages/tinyxml/ \
+-L/Users/travisstaley/Documents/source-code/C++/packages/tinyxml/ \
 "
 HPATH="\
--I./Users/travisstaley/Documents/source-code/C++/packages/tinyxml/ \
+-I/Users/travisstaley/Documents/source-code/C++/packages/tinyxml/ \
 "
 LIBS="\
 -ltinyxml \
@@ -14,7 +12,7 @@ SRC="\
 FinancialRecordList.cpp
 FinancialRecord.cpp
 "
-MAIN="financial"
+MAIN="main"
 for a in $SRC;do
     g++ -DTIXML_USE_STL -g -c -o ./objs/"$a".o "$a" $HPATH # $LIBPATH $LIBS 
 done

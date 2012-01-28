@@ -1,0 +1,6 @@
+<root>
+  <config
+      InputFile="/Users/travisstaley/VirtualBoxShared/finance.XML"
+      debug="false"
+      />
+</root>

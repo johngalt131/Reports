@@ -3,30 +3,50 @@
 #ifndef FINANCIALRECORD_H
 #define FINANCIALRECORD_H
 
-class FinancialRecord{
+#include <string>
 
+namespace Financial{
+  typedef struct time{
+    short hours;
+    short minutes;
+    short seconds;
+  };
+  typedef struct date{
+    short day;
+    short month;
+    short year;
+    time _time;
+  };
+}
+
+class FinancialRecord{
  public:
-  void set_date(date date);
-  void set_cleared_val(int cleared_val);
-  void set_description(std::string description);
-  void set_debit_val(float debit_val);
-  void set_num(int num);
-  void set_category(std::string category);
-  void set_budget_category(std::string budget_category);
-  void set_notes(std::string notes);
-  void set_account(std::string account);
-  void set_discretionary(bool discretionary);
-  void set_credit_val(float credit_val);
-  void set_order(short order);
-  void set_repay(bool repay);
-  void set_pending_total(float pending_total);
-  void set_reconciled_val(float reconciled_val);
-  void set_cleared_balance(float cleared_balance);
-  void set_reconciled_balance(float reconciled_balance);
-  void set_total_discretionary(float total_discretionary);
-  void set_discretionary_amt(float discretionary_amt);
+  FinancialRecord();
+  ~FinancialRecord();
+  // These are automatically generated getter and setter methods
+  // Do Not Edit
+ public:
+  void set_date(std::string new_date);
+  void set_cleared_val(std::string new_cleared_val);
+  void set_description(std::string new_description);
+  void set_debit_val(std::string new_debit_val);
+  void set_num(std::string new_num);
+  void set_category(std::string new_category);
+  void set_budget_category(std::string new_budget_category);
+  void set_notes(std::string new_notes);
+  void set_account(std::string new_account);
+  void set_discretionary(std::string new_discretionary);
+  void set_credit_val(std::string new_credit_val);
+  void set_order(std::string new_order);
+  void set_repay(std::string new_repay);
+  void set_pending_total(std::string new_pending_total);
+  void set_reconciled_val(std::string new_reconciled_val);
+  void set_cleared_balance(std::string new_cleared_balance);
+  void set_reconciled_balance(std::string new_reconciled_balance);
+  void set_total_discretionary(std::string new_total_discretionary);
+  void set_discretionary_amt(std::string new_discretionary_amt);
   
-  date get_date(void);
+  Financial::date get_date(void);
   int get_cleared_val(void);
   std::string get_description(void);
   float get_debit_val(void);
@@ -46,8 +66,10 @@ class FinancialRecord{
   float get_total_discretionary(void);
   float get_discretionary_amt(void);
   
+  // These are automatically generated member variables
+  // Do Not Edit
  private:
-  date _date;
+  Financial::date _date;
   int _cleared_val;
   std::string _description;
   float _debit_val;
