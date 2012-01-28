@@ -45,7 +45,7 @@ void FinancialRecordList::ReadData(){
 	child = Record->FirstChildElement(PROPERTY_NAME[i]);
 	switch(i){
 	  
-	  // BEGINCASES
+	  // BEGINCASE
 	  // This is automatically generated code
 	  // Do Not Edit
 	case DATE:{
@@ -238,7 +238,7 @@ void FinancialRecordList::ReadData(){
 	  }
 	  break;
 	}
-	  //ENDCASES
+	  //ENDCASE
 	defualt:
 	  break;
 	}

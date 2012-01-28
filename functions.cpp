@@ -1,4 +1,5 @@
 
+// BEGINPROTOTYPES
 
 // These are automatically generated getter and setter methods
 // Do Not Edit
@@ -65,7 +66,9 @@ float _cleared_balance;
 float _reconciled_balance;
 float _total_discretionary;
 float _discretionary_amt;
+// ENDPROTOTYPES
 
+// BEGINCONSTRUCTOR
 // This is an automatically generated initialization block for constructor
 // Do Not Edit
 set_date("01/12/1900");
@@ -87,9 +90,207 @@ set_cleared_balance("-34044");
 set_reconciled_balance("-34044");
 set_total_discretionary("-34044");
 set_discretionary_amt("-34044");
+// ENDCONSTRUCTOR
 
 
-//BEGINHELLO
+// BEGINCASE
+// This is automatically generated code
+// Do Not Edit
+case DATE:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_date(temp_string);
+}
+break;
+}
+case CLEARED_VAL:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_cleared_val(temp_string);
+}
+break;
+}
+case DESCRIPTION:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_description(temp_string);
+}
+break;
+}
+case DEBIT_VAL:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_debit_val(temp_string);
+}
+break;
+}
+case NUM:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_num(temp_string);
+}
+break;
+}
+case CATEGORY:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_category(temp_string);
+}
+break;
+}
+case BUDGET_CATEGORY:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_budget_category(temp_string);
+}
+break;
+}
+case NOTES:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_notes(temp_string);
+}
+break;
+}
+case ACCOUNT:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_account(temp_string);
+}
+break;
+}
+case DISCRETIONARY:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_discretionary(temp_string);
+}
+break;
+}
+case CREDIT_VAL:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_credit_val(temp_string);
+}
+break;
+}
+case ORDER:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_order(temp_string);
+}
+break;
+}
+case REPAY:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_repay(temp_string);
+}
+break;
+}
+case PENDING_TOTAL:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_pending_total(temp_string);
+}
+break;
+}
+case RECONCILED_VAL:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_reconciled_val(temp_string);
+}
+break;
+}
+case CLEARED_BALANCE:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_cleared_balance(temp_string);
+}
+break;
+}
+case RECONCILED_BALANCE:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_reconciled_balance(temp_string);
+}
+break;
+}
+case TOTAL_DISCRETIONARY:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_total_discretionary(temp_string);
+}
+break;
+}
+case DISCRETIONARY_AMT:{
+const char *temp = child->GetText();
+std::string temp_string;
+if( temp ){ 
+temp_string = temp;
+free(temp);
+NAMEOFCLASSset_discretionary_amt(temp_string);
+}
+break;
+}
+// case statements
+
+// ENDCASE
+// BEGINIMPLEMENTATION
+
 // This is an automatically generated code
 // Do Not Edit
 void FinancialRecord::set_date(std::string new_date){
@@ -122,7 +323,6 @@ if( new_int > a || new_int < b ){
 	    << " And is out of range. " << std::endl;
  }
  else{
-   //ENDHELLO
    temp_date.month = new_int;    
  }
 date = strtok(NULL,"-,/");
@@ -339,3 +539,4 @@ return _total_discretionary;
 float FinancialRecord::get_discretionary_amt(){
 return _discretionary_amt;
 }
+// ENDIMPLEMENTATION

@@ -23,6 +23,8 @@ class FinancialRecord{
  public:
   FinancialRecord();
   ~FinancialRecord();
+  
+  //BEGINPROTOTYPES
   // These are automatically generated getter and setter methods
   // Do Not Edit
  public:
@@ -88,7 +90,7 @@ class FinancialRecord{
   float _reconciled_balance;
   float _total_discretionary;
   float _discretionary_amt;
-  
+  //ENDPROTOTYPES  
 };
 
 

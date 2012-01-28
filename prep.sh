@@ -14,6 +14,10 @@ FILE_NAME="financial_structs.h"
 GETTER_SETTER_METHODS_FILE="functions.cpp"
 SETTER_ARGUMENT_PREFIX="new_"
 
+FUNCTION_IMPLEMENTATIONS_FILE="FinancialRecord.cpp"
+FUNCTION_PROTOTYPE_FILE="FinancialRecord.h"
+FUNCTION_CASE_FILE="FinancialRecordList.cpp"
+
 # Empty the file
 H_FILE_INFO="
 // This file was created by prep.sh
@@ -57,6 +61,7 @@ echo "#endif" >> $FILE_NAME
 # Generate new getter and setter function names
 # Setter Methods: prototypes
 echo "" > $GETTER_SETTER_METHODS_FILE
+echo "// BEGINPROTOTYPES" >> $GETTER_SETTER_METHODS_FILE
 echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
 echo "// These are automatically generated getter and setter methods" >> $GETTER_SETTER_METHODS_FILE
 echo "// Do Not Edit" >> $GETTER_SETTER_METHODS_FILE
@@ -90,8 +95,10 @@ cat $FIELD_FILE | while read a;do
     MESSAGE="$type $member_name;"
     echo "$MESSAGE" >> $GETTER_SETTER_METHODS_FILE
 done
+echo "// ENDPROTOTYPES" >> $GETTER_SETTER_METHODS_FILE
 
 echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
+echo "// BEGINCONSTRUCTOR" >> $GETTER_SETTER_METHODS_FILE
 echo "// This is an automatically generated initialization block for constructor" >> $GETTER_SETTER_METHODS_FILE
 echo "// Do Not Edit" >> $GETTER_SETTER_METHODS_FILE
 cat $FIELD_FILE | while read a;do
@@ -103,12 +110,14 @@ cat $FIELD_FILE | while read a;do
     MESSAGE="$function_name(\"$value\");"
     echo "$MESSAGE" >> $GETTER_SETTER_METHODS_FILE
 done
+echo "// ENDCONSTRUCTOR" >> $GETTER_SETTER_METHODS_FILE
 echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
 
 # Generate the tinyxml code
 # This is partially dependent on the format of the xml file
 # this is for the HandBase export format
 echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
+echo "// BEGINCASE" >> $GETTER_SETTER_METHODS_FILE
 echo "// This is automatically generated code" >> $GETTER_SETTER_METHODS_FILE
 echo "// Do Not Edit" >> $GETTER_SETTER_METHODS_FILE
 cat $FIELD_FILE | while read a;do
@@ -128,10 +137,11 @@ cat $FIELD_FILE | while read a;do
 done
 echo "// case statements" >> $GETTER_SETTER_METHODS_FILE
 echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
-
+echo "// ENDCASE" >> $GETTER_SETTER_METHODS_FILE
 
 ## Implementation of getters and setters
 # setters
+echo "// BEGINIMPLEMENTATION" >> $GETTER_SETTER_METHODS_FILE
 echo $NEWLINES >> $GETTER_SETTER_METHODS_FILE
 echo "// This is an automatically generated code" >> $GETTER_SETTER_METHODS_FILE
 echo "// Do Not Edit" >> $GETTER_SETTER_METHODS_FILE
@@ -194,7 +204,7 @@ cat $FIELD_FILE | while read a;do
     echo "return _$name;" >> $GETTER_SETTER_METHODS_FILE
     echo "}" >> $GETTER_SETTER_METHODS_FILE
 done
-
+echo "// ENDIMPLEMENTATION" >> $GETTER_SETTER_METHODS_FILE
 
 # INDENT STRUCT FILE
 indent $FILE_NAME
@@ -202,4 +212,27 @@ sed "s/\t/$TAB/" <$FILE_NAME > tmp && mv tmp $FILE_NAME
 
 
 ## now put all in the right places.
+
+# sed -n '1,/BEGINCASE/ p' < $FUNCTION_CASE_FILE > tmp
+# sed -n '/BEGINCASE/,/ENDCASE/ p' < $GETTER_SETTER_METHODS_FILE >> tmp
+# sed -n '/ENDCASE/,$ p' < $FUNCTION_CASE_FILE >> tmp
+# mv tmp $FUNCTION_CASE_FILE
+
+# sed -n '1,/BEGINPROTOTYPES/ p' < $FUNCTION_PROTOTYPE_FILE > tmp
+# sed -n '/BEGINPROTOTYPES/,/ENDPROTOTYPES/ p' < $GETTER_SETTER_METHODS_FILE >> tmp
+# sed -n '/ENDPROTOTYPES/,$ p' < $FUNCTION_PROTOTYPE_FILE >> tmp
+# mv tmp $FUNCTION_PROTOTYPE_FILE
+
+# sed -n '1,/BEGINIMPLEMENTATION/ p' < $FUNCTION_IMPLEMENTATIONS_FILE > tmp
+# sed -n '/BEGINIMPLEMENTATION/,/ENDIMPLEMENTATION/ p' < $GETTER_SETTER_METHODS_FILE >> tmp
+# sed -n '/ENDIMPLEMENTATION/,$ p' < $FUNCTION_IMPLEMENTATIONS_FILE >> tmp
+# mv tmp $FUNCTION_IMPLEMENTATIONS_FILE
+
+sed -n '1,/BEGINCONSTRUCTOR/ p' < $FUNCTION_IMPLEMENTATIONS_FILE > tmp
+sed -n '/BEGINCONSTRUCTOR/,/ENDCONSTRUCTOR/ p' < $GETTER_SETTER_METHODS_FILE >> tmp
+sed -n '/BEGINCONSTRUCTOR/,$ p' < $FUNCTION_IMPLEMENTATIONS_FILE >> tmp
+mv tmp $FUNCTION_IMPLEMENTATIONS_FILE
+
+
+
 
