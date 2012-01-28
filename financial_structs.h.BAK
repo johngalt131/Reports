@@ -24,6 +24,7 @@ static const char* const PROPERTY_NAME[] = {
 "Cleared_Balance",
 "Reconciled_Balance",
 "Total_Discretionary",
+"Discretionary_Amt",
 "Unknown Type"
 };
 
@@ -46,6 +47,7 @@ RECONCILED_VAL,
 CLEARED_BALANCE,
 RECONCILED_BALANCE,
 TOTAL_DISCRETIONARY,
+DISCRETIONARY_AMT,
 UNKNOWN_TYPE,
 NUMBER_OF_PROPERS
 };
