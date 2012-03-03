@@ -1,5 +1,4 @@
 #!/bin/bash
-
 ## Constants
 # name of the file with all the fields
 FIELD_FILE="fields.list"
@@ -213,29 +212,29 @@ sed "s/\t/$TAB/" <$FILE_NAME > tmp && mv tmp $FILE_NAME
 
 ## now put all in the right places.
 
-sed -n '1,/BEGINCASE/ p' | sed '$d' < $FUNCTION_CASE_FILE > tmp
+sed -n '1,/BEGINCASE/ p' | sed '$ d' < $FUNCTION_CASE_FILE > tmp
 sed -n '/BEGINCASE/,/ENDCASE/ p' < $GETTER_SETTER_METHODS_FILE >> tmp
-sed -n '/ENDCASE/,$ p' | sed '1d' < $FUNCTION_CASE_FILE >> tmp
+sed -n '/ENDCASE/,$ p' | sed '1 d' < $FUNCTION_CASE_FILE >> tmp
 mv tmp $FUNCTION_CASE_FILE
 indent $FILE_NAME
 sed "s/\t/$TAB/" <$FILE_NAME > tmp && mv tmp $FILE_NAME
 
 
-sed -n '1,/BEGINPROTOTYPES/ p' | sed '$d' < $FUNCTION_PROTOTYPE_FILE > tmp
+sed -n '1,/BEGINPROTOTYPES/ p' | sed '$ d' < $FUNCTION_PROTOTYPE_FILE > tmp
 sed -n '/BEGINPROTOTYPES/,/ENDPROTOTYPES/ p' < $GETTER_SETTER_METHODS_FILE >> tmp
-sed -n '/ENDPROTOTYPES/,$ p' sed '1d' < $FUNCTION_PROTOTYPE_FILE >> tmp
+sed -n '/ENDPROTOTYPES/,$ p' | sed '1 d' < $FUNCTION_PROTOTYPE_FILE >> tmp
 mv tmp $FUNCTION_PROTOTYPE_FILE
 # indent $FUNCTION_PROTOTYPE_FILE
 # sed "s/\t/$TAB/" <$FUNCTION_PROTOTYPE_FILE > tmp && mv tmp $FUNCTION_PROTOTYPE_FILE
 
-sed -n '1,/BEGINIMPLEMENTATION/ p' | sed '$d' < $FUNCTION_IMPLEMENTATIONS_FILE > tmp
+sed -n '1,/BEGINIMPLEMENTATION/ p' | sed '$ d' < $FUNCTION_IMPLEMENTATIONS_FILE > tmp
 sed -n '/BEGINIMPLEMENTATION/,/ENDIMPLEMENTATION/ p' < $GETTER_SETTER_METHODS_FILE >> tmp
-sed -n '/ENDIMPLEMENTATION/,$ p' | sed '1d' < $FUNCTION_IMPLEMENTATIONS_FILE >> tmp
+sed -n '/ENDIMPLEMENTATION/,$ p' | sed '1 d' < $FUNCTION_IMPLEMENTATIONS_FILE >> tmp
 mv tmp $FUNCTION_IMPLEMENTATIONS_FILE
 
-sed -n '1,/BEGINCONSTRUCTOR/ p' | sed '$d' < $FUNCTION_IMPLEMENTATIONS_FILE > tmp
+sed -n '1,/BEGINCONSTRUCTOR/ p' | sed '$ d' < $FUNCTION_IMPLEMENTATIONS_FILE > tmp
 sed -n '/BEGINCONSTRUCTOR/,/ENDCONSTRUCTOR/ p' < $GETTER_SETTER_METHODS_FILE >> tmp
-sed -n '/ENDCONSTRUCTOR/,$ p' | sed '1d' < $FUNCTION_IMPLEMENTATIONS_FILE >> tmp
+sed -n '/ENDCONSTRUCTOR/,$ p' | sed '1 d' < $FUNCTION_IMPLEMENTATIONS_FILE >> tmp
 mv tmp $FUNCTION_IMPLEMENTATIONS_FILE
 # indent $FUNCTION_IMPLEMENTATIONS_FILE
 # sed "s/\t/$TAB/" <$FUNCTION_IMPLEMENTATIONS_FILE > tmp && mv tmp $FUNCTION_IMPLEMENTATIONS_FILE
