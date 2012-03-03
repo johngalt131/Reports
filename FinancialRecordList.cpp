@@ -44,8 +44,6 @@ void FinancialRecordList::ReadData(){
       for ( int i = 0 ; i < NUMBER_OF_PROPS ; i++){
 	child = Record->FirstChildElement(PROPERTY_NAME[i]);
 	switch(i){
-	  
-	  // BEGINCASE
 // BEGINCASE
 // This is automatically generated code
 // Do Not Edit
@@ -240,9 +238,7 @@ NAMEOFCLASSset_discretionary_amt(temp_string);
 break;
 }
 // case statements
-
-// ENDCASE
-	  //ENDCASE
+  //ENDCASE
 	defualt:
 	  break;
 	}
