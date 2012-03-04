@@ -101,7 +101,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_date(temp_string);
 }
 break;
@@ -111,7 +110,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_cleared_val(temp_string);
 }
 break;
@@ -121,7 +119,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_description(temp_string);
 }
 break;
@@ -131,7 +128,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_debit_val(temp_string);
 }
 break;
@@ -141,7 +137,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_num(temp_string);
 }
 break;
@@ -151,7 +146,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_category(temp_string);
 }
 break;
@@ -161,7 +155,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_budget_category(temp_string);
 }
 break;
@@ -171,7 +164,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_notes(temp_string);
 }
 break;
@@ -181,7 +173,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_account(temp_string);
 }
 break;
@@ -191,7 +182,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_discretionary(temp_string);
 }
 break;
@@ -201,7 +191,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_credit_val(temp_string);
 }
 break;
@@ -211,7 +200,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_order(temp_string);
 }
 break;
@@ -221,7 +209,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_repay(temp_string);
 }
 break;
@@ -231,7 +218,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_pending_total(temp_string);
 }
 break;
@@ -241,7 +227,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_reconciled_val(temp_string);
 }
 break;
@@ -251,7 +236,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_cleared_balance(temp_string);
 }
 break;
@@ -261,7 +245,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_reconciled_balance(temp_string);
 }
 break;
@@ -271,7 +254,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_total_discretionary(temp_string);
 }
 break;
@@ -281,7 +263,6 @@ const char *temp = child->GetText();
 std::string temp_string;
 if( temp ){ 
 temp_string = temp;
-free(temp);
 NAMEOFCLASSset_discretionary_amt(temp_string);
 }
 break;

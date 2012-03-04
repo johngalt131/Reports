@@ -128,7 +128,7 @@ cat $FIELD_FILE | while read a;do
     echo "std::string $temp_string;" >> $GETTER_SETTER_METHODS_FILE
     echo "if( temp ){ " >> $GETTER_SETTER_METHODS_FILE
     echo "temp_string = temp;" >> $GETTER_SETTER_METHODS_FILE
-    echo "free(temp);" >> $GETTER_SETTER_METHODS_FILE
+    #echo "free(temp);" >> $GETTER_SETTER_METHODS_FILE
     echo "NAMEOFCLASS$setter_function($temp_string);" >> $GETTER_SETTER_METHODS_FILE
     echo "}" >> $GETTER_SETTER_METHODS_FILE
     echo "break;" >> $GETTER_SETTER_METHODS_FILE

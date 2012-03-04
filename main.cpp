@@ -10,4 +10,5 @@
 int main(){
 
   FinancialRecordList *list = new FinancialRecordList();
+  delete list;
 }
