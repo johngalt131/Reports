@@ -8,14 +8,14 @@ CLASS="FinancialRecord"
 # this replaces the tabs with spaces
 TAB="  "
 # output file for the property name structures
-FILE_NAME="financial_structs.h"
+FILE_NAME="include/financial_structs.h"
 # output file for the functions
 GETTER_SETTER_METHODS_FILE="functions.cpp"
 SETTER_ARGUMENT_PREFIX="new_"
 
-FUNCTION_IMPLEMENTATIONS_FILE="FinancialRecord.cpp"
-FUNCTION_PROTOTYPE_FILE="FinancialRecord.h"
-FUNCTION_CASE_FILE="FinancialRecordList.cpp"
+FUNCTION_IMPLEMENTATIONS_FILE="src/FinancialRecord.cpp"
+FUNCTION_PROTOTYPE_FILE="include/FinancialRecord.h"
+FUNCTION_CASE_FILE="src/FinancialRecordList.cpp"
 
 # Empty the file
 H_FILE_INFO="
@@ -178,7 +178,7 @@ $aux_name = true;
 _$name = $aux_name;"	
     elif [ $type == "Financial::date" ];then
 	aux_name=""
-	MESSAGE_FILE="template.date.cpp"
+	MESSAGE_FILE="src/template.date.cpp"
 	cat $MESSAGE_FILE | sed "s/INSERT_NAME/$newname/" | sed "s/NAMESPACE/$NAMESPACE/" >> $GETTER_SETTER_METHODS_FILE
 	echo "_$name = $newname;" >> $GETTER_SETTER_METHODS_FILE
     elif [ $type == "std::string" ];then
