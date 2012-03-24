@@ -11,6 +11,7 @@ LIBS="\
 SRC="\
 FinancialRecordList.cpp
 FinancialRecord.cpp
+Filters.cpp
 "
 MAIN="main"
 for a in $SRC;do

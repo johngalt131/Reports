@@ -3,6 +3,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include "Filters.h"
 #include "tinyxml.h"
 
 #include "FinancialRecordList.h"

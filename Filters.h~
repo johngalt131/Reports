@@ -1,0 +1,47 @@
+
+#ifndef FILTERS_H
+#define FILTERS_H
+
+#include <vector>
+#include <map>
+#include <string>
+
+namespace Filters{
+  /* static const char *const PROPERTY_NAME[] = { */
+  /* }; */
+  
+  /* typedef enum PROPERTY_NAME_E { */
+  /*   UNKNOWN_TYPE, */
+  /*   NUMBER_OF_PROPS */
+  /* }; */
+  
+ typedef std::map<std::string,PROPERTY_TYPE_E> FILTER_TYPE_2_PROP;
+  
+
+  class Filter{
+  public:
+    Filter();
+    ~Filter();
+    virtual bool isSatisfied();
+  private:
+  };
+  
+  class FloatFilter: public Filter{
+  public:
+    bool isSatisfied(float test_value);
+  private:
+  };
+  
+  class Filters{
+  public:
+    Filters();
+    Filters(std::string config_file);
+    ~Filters();
+    
+  private:
+    std::vector<Filter> types;
+    std::string _filter_file;
+  };  
+
+} // NAMESPACE Filters
+#endif
