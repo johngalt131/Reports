@@ -51,7 +51,18 @@ public:
 		  const std::string type,
 		  const std::string value);
   BClass * getElement(const std::string name);
-private:
+  bool getElement(const std::string name,
+		  float &val);
+  bool getElement(const std::string name,
+		  int &val);
+  bool getElement(const std::string name,
+		  Financial::date &val);
+  bool getElement(const std::string name,
+		  std::string &val);
+  bool getElement(const std::string name,
+		  bool &val);
+  
+ private:
   std::map<std::string,BClass *> _map;
 };
 
@@ -65,6 +76,5 @@ class FinancialRecord{
   //  void addData(std::string Name,
  private:
 };
-
 
 #endif

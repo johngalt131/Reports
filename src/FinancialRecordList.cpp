@@ -8,12 +8,12 @@
 #endif
 #include "tinyxml.h"
 #include "FinancialRecordList.h"
-static std::string config_file = "./config.xml";
+
+static const  std::string config_file = "./config.xml";
 FinancialRecordList::FinancialRecordList(){
   
   this->Config();
   this->ReadData();
-  int j = 0;
 }
 FinancialRecordList::~FinancialRecordList(){
   
@@ -64,27 +64,30 @@ void FinancialRecordList::ReadData(){
 	NAME_2_TYPE::const_iterator tItr = name2Type.find(name);
 	if(tItr != name2Type.end()){
 	  std::string type = tItr->second;
-	  record._data.addElement(name,type,val);
+	  if(not record._data.addElement(name,type,val)) {
+	    std::cout << "There was a problem adding "
+		      << name << " type = "
+		      << type << std::endl;
+	  }
 	}
       }
       records.push_back(record);
     }
   }
+  // TEST
   std::vector<FinancialRecord>::iterator itr;
   itr = records.begin();
   for( ; itr != records.end(); itr++){
     BClass *tmp = NULL;
     Wrapper w = itr->_data;
     std::string name = "Credit_val";
-    data<float> *val;
-    tmp = w.getElement(name);
-    std::cout << "null?" << std::endl;
-    if(tmp){
-      val = (data<float> * )tmp;
-      std::cout << tmp->getType() << std::endl;
-      std::cout << val->getVal() << std::endl;
+    float val;
+    if(w.getElement(name,val)){
+      std::cout <<"val = "<< val << std::endl;    
     }
   }
+  
+  //TEST
   delete Doc;
 }
 

@@ -10,7 +10,6 @@
 
 BClass * Wrapper::getElement(std::string name){
   std::map<std::string, BClass *>::const_iterator Itr = _map.find(name);
-  std::cout << _map.size() << std::endl;
   if(Itr != _map.end()){
     return Itr->second;
   }
@@ -45,7 +44,7 @@ bool Wrapper::addElement(std::string name,
 	  type == "Float" ){
     type_value = "float";
     std::stringstream string_to_float;
-    int float_val = 0;
+    float float_val = 0;
     string_to_float << value;
     string_to_float >> float_val;
     data<float> *newData = new data<float>(type_value,float_val);
@@ -167,6 +166,54 @@ bool Wrapper::addElement(std::string name,
 
   return true;
 }
+
+bool Wrapper::getElement(const std::string name,
+			 float &val){
+  std::map<std::string, BClass *>::const_iterator Itr = _map.find(name);
+  std::cout << "here" << std::endl;
+  if(Itr != _map.end()){
+    val = ((data<float> *)Itr->second)->getVal();
+    return true;
+  }
+  return false;
+}
+bool Wrapper::getElement(const std::string name,
+			 int &val){
+  std::map<std::string, BClass *>::const_iterator Itr = _map.find(name);
+  if(Itr != _map.end()){
+    val = ((data<int> *)Itr->second)->getVal();
+    return true;
+  }
+  return false;
+}
+bool Wrapper::getElement(const std::string name,
+			 Financial::date &val){
+  std::map<std::string, BClass *>::const_iterator Itr = _map.find(name);
+  if(Itr != _map.end()){
+    val = ((data<Financial::date> *)Itr->second)->getVal();
+    return true;
+  }
+  return false;
+}
+bool Wrapper::getElement(const std::string name,
+			 std::string &val){
+  std::map<std::string, BClass *>::const_iterator Itr = _map.find(name);
+  if(Itr != _map.end()){
+    val = ((data<std::string> *)Itr->second)->getVal();
+    return true;
+  }
+  return false;
+}
+bool Wrapper::getElement(const std::string name,
+			 bool &val){
+  std::map<std::string, BClass *>::const_iterator Itr = _map.find(name);
+  if(Itr != _map.end()){
+    val = ((data<bool> *)Itr->second)->getVal();
+    return true;
+  }
+  return false;  
+}
+
 
 FinancialRecord::~FinancialRecord(){
   
