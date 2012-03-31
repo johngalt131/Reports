@@ -52,4 +52,24 @@ typedef enum PROPERTY_NAME_E {
   NUMBER_OF_PROPS
 };
 
+typedef enum {
+  FLOAT,
+  INT,
+  STRING,
+  COUNT
+}TYPE_E;
+
+template<typename T>
+class data{
+public:
+  data(T t){
+    value = t; 
+  };
+  void setVal(T t){value = t;};
+  T getVal(){return value;};
+private:
+  T value;
+};
+
+
 #endif
