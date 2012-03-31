@@ -12,11 +12,11 @@ LIBS="\
 SRC="\
 FinancialRecordList.cpp
 FinancialRecord.cpp
-Filters.cpp
 "
+#Filters.cpp
 MAIN="main"
 for a in $SRC;do
-    g++ -O3 -DTIXML_USE_STL -g -c -o ./objs/"$a".o ./src/"$a" $HPATH # $LIBPATH $LIBS 
+    g++ -O0 -DTIXML_USE_STL -g -c -o ./objs/"$a".o ./src/"$a" $HPATH # $LIBPATH $LIBS 
 done
 #g++ -g -o music music.cpp $HPATH $LIBPATH $LIBS 
-g++ -O3 -DTIXML_USE_STL -g -o  $MAIN src/"$MAIN".cpp objs/*.o $HPATH $LIBPATH $LIBS 
+g++ -O0 -DTIXML_USE_STL -g -o  $MAIN src/"$MAIN".cpp objs/*.o $HPATH $LIBPATH $LIBS 

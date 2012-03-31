@@ -1,0 +1,21 @@
+<Root>
+  <Property name="Date" type="DATE" />
+  <Property name="Cleared_val" type="INT" />
+  <Property name="Description" type="STRING" />
+  <Property name="Debit_val" type="FLOAT" />
+  <Property name="Num" type="INT" />
+  <Property name="Category" type="STRING" />
+  <Property name="Budget_Category" type="STRING" />
+  <Property name="Notes" type="STRING" />
+  <Property name="Account" type="STRING" />
+  <Property name="Discretionary" type="BOOL" />
+  <Property name="Credit_val" type="FLOAT" />
+  <Property name="Order" type="INT" />
+  <Property name="Repay" type="BOOL" />
+  <Property name="Pending_Total" type="FLOAT" />
+  <Property name="Reconciled_Val" type="FLOAT" />
+  <Property name="Cleared_Balance" type="FLOAT" />
+  <Property name="Reconciled_Balance" type="FLOAT" />
+  <Property name="Total_Discretionary" type="FLOAT" />
+  <Property name="Discretionary_Amt" type="FLOAT" />
+</Root>

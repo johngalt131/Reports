@@ -3,9 +3,10 @@
 #include <string>
 #include <map>
 #include <vector>
+#ifdef USE_FILTERS
 #include "Filters.h"
+#endif
 #include "tinyxml.h"
-
 #include "FinancialRecordList.h"
 static std::string config_file = "./config.xml";
 FinancialRecordList::FinancialRecordList(){
@@ -20,12 +21,23 @@ FinancialRecordList::~FinancialRecordList(){
 
 void FinancialRecordList::Config(){
   TiXmlDocument *Doc = NULL;
-  TiXmlElement *root,*config;
+  TiXmlElement *root,*config,*property;
   Doc = new TiXmlDocument(config_file);
   if( Doc->LoadFile() ){
     root = Doc->FirstChildElement("root");
     config = root->FirstChildElement("config");
     _filename = config->Attribute("InputFile");
+    _fieldsFile = config->Attribute("FieldsFile");
+    delete Doc;
+  }
+  Doc = new TiXmlDocument(_fieldsFile);
+  if( Doc->LoadFile() ){
+    root = Doc->FirstChildElement("Root");
+    property = root->FirstChildElement("Property");
+    for( ; property != NULL; property = property->NextSiblingElement("Property")){
+      std::string temp = property->Attribute("name");
+      name2Type[temp] = property->Attribute("type");
+    }
     delete Doc;
   }
 }
@@ -34,206 +46,47 @@ void FinancialRecordList::ReadData(){
   TiXmlDocument *Doc = NULL;
   TiXmlElement *root,*Record,*data,*child;
   Doc = new TiXmlDocument(_filename);
-  if(Doc->LoadFile() ){
+  if( Doc->LoadFile() ){
     root =  Doc->FirstChildElement("Data");
     Record = root->FirstChildElement("Record");
-    
-    while(Record){
-      PROPERTY_NAME_E prop;
-      FinancialRecord *record = new FinancialRecord();
-      PROPNAME_2_PROP::const_iterator propItr;
-      std::string property_name;
-      for ( int i = 0 ; i < NUMBER_OF_PROPS ; i++){
-	child = Record->FirstChildElement(PROPERTY_NAME[i]);
-	switch(i){
-	  // BEGINCASE
-	  // This is automatically generated code
-	  // Do Not Edit
-	case DATE:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_date(temp_string);
-	  }
-	  break;
+    for ( ; Record != NULL; Record = Record->NextSiblingElement("Record")){
+      FinancialRecord record;
+      data = Record->FirstChildElement();
+      for(; data != NULL; data = data->NextSiblingElement()){
+	std::string name = data->ValueStr();
+	std::string val;
+	if(data->GetText()){
+	  val = data->GetText();
 	}
-	case CLEARED_VAL:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_cleared_val(temp_string);
-	  }
-	  break;
+	else{
+	  continue;
 	}
-	case DESCRIPTION:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_description(temp_string);
-	  }
-	  break;
+	NAME_2_TYPE::const_iterator tItr = name2Type.find(name);
+	if(tItr != name2Type.end()){
+	  std::string type = tItr->second;
+	  record._data.addElement(name,type,val);
 	}
-	case DEBIT_VAL:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_debit_val(temp_string);
-	  }
-	  break;
-	}
-	case NUM:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_num(temp_string);
-	  }
-	  break;
-	}
-	case CATEGORY:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_category(temp_string);
-	  }
-	  break;
-	}
-	case BUDGET_CATEGORY:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_budget_category(temp_string);
-	  }
-	  break;
-	}
-	case NOTES:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_notes(temp_string);
-	  }
-	  break;
-	}
-	case ACCOUNT:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_account(temp_string);
-	  }
-	  break;
-	}
-	case DISCRETIONARY:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_discretionary(temp_string);
-	  }
-	  break;
-	}
-	case CREDIT_VAL:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_credit_val(temp_string);
-	  }
-	  break;
-	}
-	case ORDER:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_order(temp_string);
-	  }
-	  break;
-	}
-	case REPAY:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_repay(temp_string);
-	  }
-	  break;
-	}
-	case PENDING_TOTAL:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_pending_total(temp_string);
-	  }
-	  break;
-	}
-	case RECONCILED_VAL:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_reconciled_val(temp_string);
-	  }
-	  break;
-	}
-	case CLEARED_BALANCE:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_cleared_balance(temp_string);
-	  }
-	  break;
-	}
-	case RECONCILED_BALANCE:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_reconciled_balance(temp_string);
-	  }
-	  break;
-	}
-	case TOTAL_DISCRETIONARY:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_total_discretionary(temp_string);
-	  }
-	  break;
-	}
-	case DISCRETIONARY_AMT:{
-	  const char *temp = child->GetText();
-	  std::string temp_string;
-	  if( temp ){ 
-	    temp_string = temp;
-	    record->set_discretionary_amt(temp_string);
-	  }
-	  break;
-	}
-	  // case statements
-	  
-	  // ENDCASE
-	defualt:
-	  break;
-	}
-	// case statements
-	
       }
-      Record = Record->NextSiblingElement();
-      records.push_back(*record);
-      delete record;
+      records.push_back(record);
     }
-    delete Doc;
   }
+  std::vector<FinancialRecord>::iterator itr;
+  itr = records.begin();
+  for( ; itr != records.end(); itr++){
+    BClass *tmp = NULL;
+    Wrapper w = itr->_data;
+    std::string name = "Credit_val";
+    data<float> *val;
+    tmp = w.getElement(name);
+    std::cout << "null?" << std::endl;
+    if(tmp){
+      val = (data<float> * )tmp;
+      std::cout << tmp->getType() << std::endl;
+      std::cout << val->getVal() << std::endl;
+    }
+  }
+  delete Doc;
 }
+
+
 

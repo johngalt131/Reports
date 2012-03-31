@@ -1,6 +1,7 @@
 <root>
   <config
-      InputFile="/Users/travisstaley/VirtualBoxShared/finance.XML"
+      InputFile="/Users/travisstaley/VirtualBoxShared/financial.XML"
       debug="false"
+      FieldsFile="/Users/travisstaley/Documents/source-code/C++/Reports/fields.xml"
       />
 </root>
