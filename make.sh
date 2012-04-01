@@ -1,13 +1,16 @@
 
 LIBPATH="\
 -L/Users/travisstaley/Documents/source-code/C++/packages/tinyxml/ \
+-L/Users/travisstaley/Documents/source-code/C++/packages/genericContainer/lib/ \
 "
 HPATH="\
 -I./include/ \
 -I/Users/travisstaley/Documents/source-code/C++/packages/tinyxml/ \
+-I/Users/travisstaley/Documents/source-code/C++/packages/genericContainer/i_include/ \
 "
 LIBS="\
 -ltinyxml \
+-lcontainer \
 "
 SRC="\
 FinancialRecordList.cpp

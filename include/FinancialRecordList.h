@@ -9,6 +9,7 @@
 #include "FinancialRecord.h"
 
 static NAME_2_TYPE name2Type;
+
 class FinancialRecordList{
  public:
   FinancialRecordList();

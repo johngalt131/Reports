@@ -78,7 +78,7 @@ void FinancialRecordList::ReadData(){
   std::vector<FinancialRecord>::iterator itr;
   itr = records.begin();
   for( ; itr != records.end(); itr++){
-    Wrapper w = itr->_data;
+    GContainer::Container w = itr->_data;
     std::string name = "Notes";
     std::string val;
     if(w.getElement(name,val)){
