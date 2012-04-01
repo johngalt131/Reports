@@ -1,9 +1,9 @@
 
-
 #include <string>
 #include <map>
 #include <vector>
 #ifdef USE_FILTERS
+#warning "using filters"
 #include "Filters.h"
 #endif
 #include "tinyxml.h"

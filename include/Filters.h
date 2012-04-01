@@ -5,7 +5,8 @@
 #include <vector>
 #include <map>
 #include <string>
-#include "Filterable.h"
+
+#include "container.h"
 
 namespace Filters{
   
@@ -16,28 +17,22 @@ namespace Filters{
     GREATER_THAN,
     GREATER_THAN_OR_EQUAL,
     NOT_EQUAL
-  }
-  
-  class Filter{
-  public:
-    Filter();
-    ~Filter();
-    virtual bool IsSatisfied();  
-  private:
   };
   
-  //Forward declaration
-  class Filters;
-
-  typedef std::vector<Filter> FILTER;
-  typedef std::vector<FILTER> FILTER_GROUP;
-  typedef std::vector<FILTER_GROUP> FILTER_GROUPS;
-
- class FloatFilter: public Filter{
+  class BFilter{
   public:
-    bool IsSatisfied(float test_value);
+    BFilter();
+    virtual ~BFilter();
+    virtual bool IsSatisfied() = 0;
+    private:
+  };
+  
+  template <typename T>
+    class Filter: public BFilter{
+  public:
+    bool IsSatisfied(T test_value);
   private:
-    float _value;
+    T _value;
     NUMBER_COMPARISON_E _type;
   };
   
@@ -48,10 +43,10 @@ namespace Filters{
     ~Filters();
     
   private:
-    FILTER_GROUPS _allFilters;
+    GContainer::Container _allFilters;
     std::string _filterFile;
-    void TestAll(std::vector<Filterable> &testObjects);
+    void TestAll();
   };  
-
+  
 } // NAMESPACE Filters
 #endif

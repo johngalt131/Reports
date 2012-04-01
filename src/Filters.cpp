@@ -6,6 +6,7 @@
 #include "tinyxml.h"
 #include "Filters.h"
 
+#if 4 == 5
 void Filters::Filters::TestAll(std::vector<Filterable> &testObject){
   std::vector<Filterable>::iterator testItr = testObject.begin();
   for( ; testItr != testObject.end(); testItr++){
@@ -78,3 +79,4 @@ bool Filters::Filters::IsSatisfied(T test_value){
     break;
   }
 }
+#endif
