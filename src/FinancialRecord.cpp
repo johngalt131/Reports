@@ -216,7 +216,7 @@ bool Wrapper::getElement(const std::string name,
 
 
 FinancialRecord::~FinancialRecord(){
-  
+
 }
 
 FinancialRecord::FinancialRecord(){

@@ -24,6 +24,7 @@ namespace Financial{
 class BClass{
 public:
   BClass(){};
+  virtual ~BClass(){};
   virtual std::string getType() = 0;
 private:
 };
@@ -32,8 +33,9 @@ template <typename T>
 class data : public BClass
 {
 public:
+  virtual ~data(){};
   data(std::string type,T t){
-    _value = t; 
+    _value = t;
     _type = type;
   };
   void setVal(T t){_value = t;};
@@ -47,6 +49,7 @@ private:
 class Wrapper{
 public:
   Wrapper(){};
+  ~Wrapper(){};
   bool addElement(const std::string name,
 		  const std::string type,
 		  const std::string value);
@@ -65,7 +68,6 @@ public:
  private:
   std::map<std::string,BClass *> _map;
 };
-
 
 class FinancialRecord{
  public:
