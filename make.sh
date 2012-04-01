@@ -13,8 +13,8 @@ LIBS="\
 -lcontainer \
 "
 SRC="\
-FinancialRecordList.cpp
-FinancialRecord.cpp
+RecordList.cpp
+Record.cpp
 "
 #Filters.cpp
 MAIN="main"

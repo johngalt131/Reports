@@ -3,12 +3,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "FinancialRecordList.h"
+#include "RecordList.h"
 
 
 
 int main(){
 
-  FinancialRecordList *list = new FinancialRecordList();
+  RecordList *list = new RecordList();
   delete list;
 }

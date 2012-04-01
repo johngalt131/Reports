@@ -1,0 +1,36 @@
+<Root>
+  <Property name="Date" type="DATE" />
+  <!--Property name="Time" type="TIME" /-->
+  <Property name="Vehicle" type="STRING" />
+  <Property name="Odometer" type="INT" />
+  <Property name="Fill" type="BOOL" />
+  <Property name="Price_Per_Gallon" type="FLOAT" />
+  <Property name="Gallons" type="FLOAT" />
+  <Property name="Repair_Cost" type="FLOAT" />
+  <Property name="Gas_Brand" type="STRING" />
+  <Property name="Location" type="STRING" />
+  <Property name="Tags" type="STRING" />
+  <Property name="Payment_Type" type="STRING" />
+  <Property name="Tire_Pressure" type="FLOAT" />
+  <Property name="Notes" type="STRING" />
+  <Property name="MPG" type="FLOAT" />
+  <Property name="Service" type="STRING" />
+  <Property name="Serviced_By" type="STRING" />
+  <Property name="Description" type="STRING" />
+  <Property name="Cost" type="FLOAT" />
+  <Property name="Order" type="INT" />
+  <Property name="Miles" type="FLOAT" />
+  <Property name="Days_Between" type="INT" />
+  <Property name="Since_Last" type="INT" />
+  <Property name="Last_Date" type="DATE" />
+  <Property name="Miles_Since" type="FLOAT" />
+  <Property name="Days_Since" type="INT" />
+  <!--Property name="Today" type="TODAY" /-->
+  <Property name="Current_Odometer" type="INT" />
+  <Property name="Maximum_MPG" type="FLOAT" />
+  <Property name="Cost_per_mile" type="FLOAT" />
+  <Property name="Cost_Per_Mile_avg" type="FLOAT" />
+  <Property name="Miles_Per_Day" type="FLOAT" />
+</Root>
+
+

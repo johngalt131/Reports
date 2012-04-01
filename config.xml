@@ -1,7 +1,12 @@
 <root>
+  <!-- <config -->
+  <!--     InputFile="/Users/travisstaley/VirtualBoxShared/financial.XML" -->
+  <!--     debug="false" -->
+  <!--     FieldsFile="/Users/travisstaley/Documents/source-code/C++/Reports/financial_fields.xml" -->
+  <!--     /> -->
   <config
-      InputFile="/Users/travisstaley/VirtualBoxShared/financial.XML"
+      InputFile="/Users/travisstaley/Documents/HanDBase/HanDBaseBackup-03302012-Automobile.PDB.xml"
       debug="false"
-      FieldsFile="/Users/travisstaley/Documents/source-code/C++/Reports/financial_fields.xml"
-      />
+      FieldsFile="/Users/travisstaley/Documents/source-code/C++/Reports/auto_fields.xml"
+  />
 </root>
