@@ -15,6 +15,7 @@ LIBS="\
 SRC="\
 RecordList.cpp
 Record.cpp
+Filters.cpp
 "
 #Filters.cpp
 MAIN="main"

@@ -36,15 +36,17 @@ namespace Filters{
     NUMBER_COMPARISON_E _type;
   };
   
-  class Filters{
+  class FilterList{
   public:
-    Filters();
-    Filters(std::string config_file);
-    ~Filters();
+    FilterList();
+    FilterList(const std::string config_file);
+    ~FilterList();
   private:
     void Configure();
+    GContainer::NAME_2_TYPE name2Type;
     GContainer::Container _allFilters;
     std::string _filterFile;
+    std::string _configFile;
     void TestAll();
   };  
   

@@ -3,10 +3,12 @@
   <!--     InputFile="/Users/travisstaley/VirtualBoxShared/financial.XML" -->
   <!--     debug="false" -->
   <!--     FieldsFile="/Users/travisstaley/Documents/source-code/C++/Reports/financial_fields.xml" -->
+  <!--     FilterFile="/Users/travisstaley/Documents/source-code/C++/Reports/financial_filters.xml" -->
   <!--     /> -->
   <config
       InputFile="/Users/travisstaley/Documents/HanDBase/HanDBaseBackup-03302012-Automobile.PDB.xml"
       debug="false"
       FieldsFile="/Users/travisstaley/Documents/source-code/C++/Reports/auto_fields.xml"
+      FilterFile="/Users/travisstaley/Documents/source-code/C++/Reports/auto_filters.xml"
   />
 </root>

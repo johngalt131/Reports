@@ -18,6 +18,7 @@ class RecordList{
   GContainer::NAME_2_TYPE name2Type;
   std::vector<Record> records;
   std::string _filename;
+  std::string _filterFile;
   std::string _fieldsFile;
 };
 

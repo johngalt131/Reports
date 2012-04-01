@@ -10,10 +10,12 @@
 #include "RecordList.h"
 
 static const  std::string config_file = "./config.xml";
+static Filters::FilterList *filters;
 RecordList::RecordList(){
   
   this->Config();
   this->ReadData();
+  filters = new Filters::FilterList(_filterFile);
 }
 RecordList::~RecordList(){
   
@@ -28,6 +30,7 @@ void RecordList::Config(){
     config = root->FirstChildElement("config");
     _filename = config->Attribute("InputFile");
     _fieldsFile = config->Attribute("FieldsFile");
+    _filterFile = config->Attribute("FilterFile");
     delete Doc;
   }
   Doc = new TiXmlDocument(_fieldsFile);
@@ -57,8 +60,7 @@ void RecordList::ReadData(){
 	std::string val;
 	if(data->GetText()){
 	  val = data->GetText();
-	}
-	else{
+	}else{
 	  continue;
 	}
 	GContainer::NAME_2_TYPE::const_iterator tItr = name2Type.find(name);
