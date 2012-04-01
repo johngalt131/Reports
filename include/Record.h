@@ -6,7 +6,6 @@
 #include <string>
 #include <map>
 
-#include "report_structs.h"
 #include "container.h"
 #include "structs.h"
 
@@ -16,7 +15,6 @@ class Record{
   ~Record();
  public:
   GContainer::Container _data; // TODO: Make this private
-  Date::date th;
   //  void addData(std::string Name,
  private:
 };

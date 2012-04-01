@@ -1,3 +1,7 @@
+
+#ifndef FILTERABLE_H
+#define FILTERABLE_H
+
 #include <vector>
 #include <string>
 #include <stdlib.h>
@@ -14,3 +18,5 @@
     
 /*   } */
 /* } */
+
+#endif

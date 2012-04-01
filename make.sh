@@ -18,9 +18,10 @@ Record.cpp
 "
 #Filters.cpp
 MAIN="main"
+rm objs/*
 # -DUSE_FILTERS
 for a in $SRC;do
-    g++ -O0 -DUSE_FILTERS -DTIXML_USE_STL -g -c -o ./objs/"$a".o ./src/"$a" $HPATH # $LIBPATH $LIBS 
+    g++ -O0 -DUSE_FILTERS -DTIXML_USE_STL -g -c -o objs/$a.o ./src/$a $HPATH # $LIBPATH $LIBS]
 done
 #g++ -g -o music music.cpp $HPATH $LIBPATH $LIBS 
 g++ -O0 -DTIXML_USE_STL -g -o  $MAIN src/"$MAIN".cpp objs/*.o $HPATH $LIBPATH $LIBS 

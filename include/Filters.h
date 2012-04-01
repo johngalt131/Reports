@@ -24,11 +24,11 @@ namespace Filters{
     BFilter();
     virtual ~BFilter();
     virtual bool IsSatisfied() = 0;
-    private:
+  private:
   };
   
   template <typename T>
-    class Filter: public BFilter{
+  class Filter: public BFilter{
   public:
     bool IsSatisfied(T test_value);
   private:
@@ -41,8 +41,8 @@ namespace Filters{
     Filters();
     Filters(std::string config_file);
     ~Filters();
-    
   private:
+    void Configure();
     GContainer::Container _allFilters;
     std::string _filterFile;
     void TestAll();

@@ -8,8 +8,6 @@
 #include <map>
 #include "Record.h"
 
-static NAME_2_TYPE name2Type;
-
 class RecordList{
  public:
   RecordList();
@@ -17,6 +15,7 @@ class RecordList{
  private:
   void Config();
   void ReadData();
+  GContainer::NAME_2_TYPE name2Type;
   std::vector<Record> records;
   std::string _filename;
   std::string _fieldsFile;

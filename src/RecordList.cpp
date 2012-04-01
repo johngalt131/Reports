@@ -61,7 +61,7 @@ void RecordList::ReadData(){
 	else{
 	  continue;
 	}
-	NAME_2_TYPE::const_iterator tItr = name2Type.find(name);
+	GContainer::NAME_2_TYPE::const_iterator tItr = name2Type.find(name);
 	if(tItr != name2Type.end()){
 	  std::string type = tItr->second;
 	  if(not record._data.addElement(name,type,val)) {
