@@ -2,13 +2,13 @@
 #include <string>
 #include <map>
 #include <vector>
+#include "typetoname.h"
 #ifdef USE_FILTERS
 #warning "using filters"
 #include "Filters.h"
 #endif
 #include "tinyxml.h"
 #include "RecordList.h"
-
 static const  std::string config_file = "./config.xml";
 static Filters::FilterList *filters;
 RecordList::RecordList(){
@@ -33,16 +33,7 @@ void RecordList::Config(){
     _filterFile = config->Attribute("FilterFile");
     delete Doc;
   }
-  Doc = new TiXmlDocument(_fieldsFile);
-  if( Doc->LoadFile() ){
-    root = Doc->FirstChildElement("Root");
-    property = root->FirstChildElement("Property");
-    for( ; property != NULL; property = property->NextSiblingElement("Property")){
-      std::string temp = property->Attribute("name");
-      name2Type[temp] = property->Attribute("type");
-    }
-    delete Doc;
-  }
+  Type2Name::GetInstance().Initialize(_fieldsFile);
 }
 
 void RecordList::ReadData(){
@@ -63,9 +54,8 @@ void RecordList::ReadData(){
 	}else{
 	  continue;
 	}
-	GContainer::NAME_2_TYPE::const_iterator tItr = name2Type.find(name);
-	if(tItr != name2Type.end()){
-	  std::string type = tItr->second;
+	std::string type;
+	if(Type2Name::GetInstance().GetType(name,type)){
 	  if(not record._data.addElement(name,type,val)) {
 	    std::cout << "There was a problem adding "
 		      << name << " type = "
