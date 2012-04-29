@@ -14,6 +14,14 @@ Filters::FilterList::FilterList(const std::string filterFile){
 Filters::FilterList::FilterList(){
 
 }
+Filters::FilterList::~FilterList(){
+  std::vector<Filter *>::iterator itr = _allFilters.begin();
+  for( ; itr != _allFilters.end();itr++){
+    delete *itr;
+    *itr = NULL;
+  }
+  _allFilters.clear();
+}
 void Filters::FilterList::Configure(){
   TiXmlDocument *Doc = NULL;
   TiXmlElement *root,*config,*filter;
