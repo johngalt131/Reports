@@ -25,9 +25,6 @@ void Filters::FilterList::Configure(){
       std::string oper;
       std::string val;
       std::string fname;
-      // if(filter->Attribute("filter")){
-      // 	fname = filter->Attribute("filter");
-      // }
       if(filter->Attribute("operator")){
 	oper = filter->Attribute("operator");
       }
@@ -70,22 +67,13 @@ GContainer::Container * Filters::Filter::Container(){
 void Filters::FilterList::TestElements(std::vector<GContainer::Container *> &test){
   std::vector<GContainer::Container *> newList;
   std::vector<Filter *>::iterator gItr = _allFilters.begin();
-  std::cout << "size of filters is " << _allFilters.size() << std::endl;
   for(; gItr != _allFilters.end(); gItr++){
-    std::cout << "Starting new filter. The size of test = "<< test.size() <<std::endl;
     GContainer::ContainerIterator * theFilter = (*gItr)->Container()->GetIterator();
     if(not theFilter->Begin()){
+      std::cout << "There was a problem with the Filter." <<std::endl;
       exit(-4);
     }
     //TODO: groups of filters to handle OR cases.
-    //test
-    GContainer::data<std::string> * nsn;
-    nsn = (GContainer::data<std::string> *)theFilter->iterator->second;
-    GContainer::Container *ted = (*gItr)->Container();
-    std::string name = "Vehicle";
-    std::string val;
-    ted->GetElement(name,val);
-    //test
     std::vector<GContainer::Container *>::iterator itr = test.begin();
     for( ; itr != test.end() ; itr++){
       bool testVal = false;
@@ -121,65 +109,8 @@ void Filters::FilterList::TestElements(std::vector<GContainer::Container *> &tes
 	newList.push_back(*itr);
       }
     }
-    std::cout << "Ending this filter. Clearing test."<<std::endl;
-    std::cout <<"Test has "<< newList.size() << " elements"<< std::endl;
     test.clear();
     test = newList;
     newList.clear();
   }
 }
-/*
-template <typename T>
-bool Filters::Filter::IsSatisfied(T test_value){
-  switch(Filters::_type){
-  case Filters::EQUAL:
-    if(test_value == _value){
-      return true;
-    }else{
-      return false;
-    }
-    break;
-  case Filters::LESS_THAN:
-    if(test_value < _value){
-      return true;
-    }else{
-      return false;
-    }
-    break;
-  case Filters::LESS_THAN_OR_EQUAL:
-    if(test_value <= _value){
-      return true;
-    }else{
-      return false;
-    }
-    break;
-  case Filters::GREATER_THAN:
-    if(test_value > _value){
-      return true;
-    }else{
-      return false;
-    }
-    break;
-  case Filters::GREATER_THAN_OR_EQUAL:
-    if(test_value >= _value){
-      return true;
-    }else{
-      return false;
-    }
-    break;
-  case Filters::NOT_EQUAL:
-    if(test_value != _value){
-      return true;
-    }else{
-      return false;
-    }
-    break;
-  }
-}
-*/
-
-#if 4 == 5
-void Filters::FilterList::TestAll(std::vector<Filterable> &testObject){
-  
-}
-#endif

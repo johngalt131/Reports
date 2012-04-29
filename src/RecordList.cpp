@@ -98,28 +98,6 @@ void RecordList::ReadData(){
       record = NULL;
     }
   }
-  //  TEST
-  for(int i = 0; i < records.size(); i++){
-    GContainer::Container *w = records[i];
-    std::string name = "Description";
-    std::string val;
-    if(w->GetElement(name,val)){
-      std::cout <<"VAL = "<< val << std::endl;    
-    }
-  }
-  for(int i = 0; i<100;i++){
-    std::vector<GContainer::Container *>::iterator itr;
-    itr = records.begin();
-    for( ; itr != records.end(); itr++){
-      GContainer::Container *w = *itr;
-      std::string name = "Notes";
-      std::string val;
-      if(w->GetElement(name,val)){
-	std::cout <<"val = "<< val << std::endl;
-      }
-    }
-  }
-  //TEST
   delete Doc;
 }
 
