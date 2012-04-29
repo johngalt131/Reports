@@ -1,14 +1,14 @@
 <root>
-  <config
-      InputFile="/Users/travisstaley/Documents/HanDBase/handbasebackup-04292012-financial.pdb.xml"
-      debug="false"
-      FieldsFile="/Users/travisstaley/Documents/source-code/C++/Reports/financial_fields.xml"
-      FilterFile="/Users/travisstaley/Documents/source-code/C++/Reports/financial_filters.xml"
-      />
   <!-- <config -->
-  <!--     InputFile="/Users/travisstaley/Documents/HanDBase/handbasebackup-04292012-auto.pdb.xml" -->
+  <!--     InputFile="/Users/travisstaley/Documents/HanDBase/handbasebackup-04292012-financial.pdb.xml" -->
   <!--     debug="false" -->
-  <!--     FieldsFile="/Users/travisstaley/Documents/source-code/C++/Reports/auto_fields.xml" -->
-  <!--     FilterFile="/Users/travisstaley/Documents/source-code/C++/Reports/auto_filters.xml" -->
-  <!-- /> -->
+  <!--     FieldsFile="/Users/travisstaley/Documents/source-code/C++/Reports/financial_fields.xml" -->
+  <!--     FilterFile="/Users/travisstaley/Documents/source-code/C++/Reports/financial_filters.xml" -->
+  <!--     /> -->
+  <config
+      InputFile="/Users/travisstaley/Documents/HanDBase/handbasebackup-04292012-auto.pdb.xml"
+      debug="false"
+      FieldsFile="/Users/travisstaley/Documents/source-code/C++/Reports/auto_fields.xml"
+      FilterFile="/Users/travisstaley/Documents/source-code/C++/Reports/auto_filters.xml"
+  />
 </root>

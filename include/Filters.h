@@ -16,7 +16,8 @@ enum NUMBER_COMPARISON_E{
   LESS_THAN_OR_EQUAL,
   GREATER_THAN,
   GREATER_THAN_OR_EQUAL,
-  NOT_EQUAL
+  NOT_EQUAL,
+  CONTAINS
 };
   
 class BFilter{
@@ -29,6 +30,7 @@ private:
   
 class Filter {
 public:
+  ~Filter();
   Filter(std::string type, GContainer::Container *Container);
   GContainer::Container *Container();
   NUMBER_COMPARISON_E GetType();

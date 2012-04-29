@@ -32,6 +32,9 @@ Filters::FilterList::~FilterList(){
   }
   _allFilters.clear();
 }
+Filters::Filter::~Filter(){
+  delete _container;
+}
 void Filters::FilterList::Configure(){
   TiXmlDocument *Doc = NULL;
   TiXmlElement *root,*config,*report,*group,*filter,*print;
@@ -69,7 +72,9 @@ Filters::Filter::Filter(std::string type, GContainer::Container *Container){
   _container = Container;
   if(type == "lt"){
     _type = LESS_THAN;
-  } else if (type == "gt") {
+  } else if (type == "contains") {
+    _type = CONTAINS;
+  }else if (type == "gt") {
     _type = GREATER_THAN;
   }else if (type == "gte") {
     _type = GREATER_THAN_OR_EQUAL;
@@ -111,6 +116,9 @@ void Filters::FilterList::TestElements(std::vector<GContainer::Container *> &tes
 	switch((*fItr)->GetType()){
 	case EQUAL:
 	  testVal = (*(theRecord->iterator->second) == (theFilter->iterator->second));
+	  break;
+	case CONTAINS:
+	  testVal = false;//(*(theRecord->iterator->second)->Contains(theFilter->iterator->second));
 	  break;
 	case LESS_THAN:
 	  testVal = (*(theRecord->iterator->second) < (theFilter->iterator->second));

@@ -1,18 +1,20 @@
 <Root>
-  <Group>
-    <Filter name="Vehicle"
-	    operator="eq"
-	    value="Robin"/>
-    <Filter name="Odometer"
-	    operator="gt"
-	    value="111100"/>
-  </Group>
-  <Group>
-    <Filte  name="Vehicle"
-	    operator="eq"
-	    value="Lucile"/>
-    <Filter name="Odometer"
-	    operator="gt"
-	    value="1"/>
-  </Group>  
+  <Report>
+    <Group>
+      <Filter name="Vehicle"
+	      operator="eq"
+	      value="Robin"/>
+      <Filter name="Odometer"
+	      operator="gt"
+	      value="111100"/>
+    </Group>
+    <Group>
+      <Filte  name="Vehicle"
+	      operator="eq"
+	      value="Lucile"/>
+      <Filter name="Service"
+	      operator="eq"
+	      value="Oil Change"/>
+    </Group>
+  </Report>  
 </Root>

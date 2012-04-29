@@ -8,7 +8,7 @@
 
 
 int main(){
-
   RecordList *list = new RecordList();
   delete list;
+  list = NULL;
 }
