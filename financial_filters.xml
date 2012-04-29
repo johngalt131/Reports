@@ -1,7 +1,43 @@
 <Root>
-  <Filter
-      name="Debit_val"
-      value="700.00"
-      operator="gt"
-      />  
+  <Report>
+    <!-- Group 1 gives all credits between 700 and 900-->
+    <Group>
+      <Filter
+	  name="Credit_val"
+	  value="700.00"
+	  operator="gt"
+	  />
+      <Filter
+	  name="Credit_val"
+	  value="900.00"
+	  operator="lt"
+	  />
+    </Group>
+    <Group>
+      <Filter
+	  name="Debit_val"
+	  value="700.00"
+	  operator="gt"
+	  />
+      <Filter
+	  name="Debit_val"
+	  value="900.00"
+	  operator="lt"
+	  />
+    </Group>
+    <Print>
+      <Field
+	  heading="Debit = "
+	  name="Debit_val"
+	  />
+      <Field
+	  heading="Was paid to "
+	  name="Description"	  
+	  />
+      <Field
+	  heading="and was spent on "
+	  name="Notes"
+	  />
+    </Print>
+  </Report>
 </Root>
