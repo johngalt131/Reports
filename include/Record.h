@@ -13,10 +13,10 @@ class Record{
  public:
   Record();
   ~Record();
- public:
+public:
   GContainer::Container _data; // TODO: Make this private
   //  void addData(std::string Name,
- private:
+private:
 };
 
 #endif

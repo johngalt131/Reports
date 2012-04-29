@@ -1,5 +1,9 @@
 <Root>
-  
+  <Filter
+      name="Debit"
+      value="700.00"
+      operator="gt"
+      />  
 
   
 </Root>

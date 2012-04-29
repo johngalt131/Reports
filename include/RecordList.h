@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <list>
 #include "Record.h"
 
 class RecordList{
@@ -15,8 +16,7 @@ class RecordList{
  private:
   void Config();
   void ReadData();
-  GContainer::NAME_2_TYPE name2Type;
-  std::vector<Record> records;
+  std::vector<GContainer::Container *> records;
   std::string _filename;
   std::string _filterFile;
   std::string _fieldsFile;

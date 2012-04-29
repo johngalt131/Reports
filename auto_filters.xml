@@ -1,5 +1,10 @@
 <Root>
-  
-
-  
+  <Filter filter="Filter1"
+  	  name="Vehicle"
+  	  operator="eq"
+  	  value="Robin"/>
+  <Filter filter="Filter2"
+	  name="Odometer"
+	  operator="gt"
+	  value="111100"/>
 </Root>
