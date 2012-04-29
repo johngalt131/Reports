@@ -27,12 +27,17 @@ RecordList::RecordList(){
   itr = FilteredList.begin();
   for( ; itr != FilteredList.end(); itr++){
     GContainer::Container *w = *itr;
-    std::string name = "Notes";
-    std::string val;
+    std::string name1 = "Debit_val";
+    std::string name2 = "Credit_val";
+    float val1;
+    float val2;
     static int i = 0;
     i++;
-    if(w->GetElement(name,val)){
-      std::cout <<"val " << i << " from filtered = "<< val << std::endl;    
+    if(w->GetElement(name1,val1)){
+      std::cout <<"Debit " << i << " from filtered = "<< val1 << std::endl;    
+    }
+    if(w->GetElement(name2,val2)){
+      std::cout <<"Credit " << i << " from filtered = "<< val2 << std::endl;    
     }
   }
   delete filters;
